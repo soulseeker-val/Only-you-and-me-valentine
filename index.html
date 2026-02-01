@@ -1,61 +1,150 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>💖 Just Us 💖</title>
+  <meta charset="UTF-8">
+  <title>Just Us ❤️</title>
+
+  <!-- Elegant Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter&display=swap" rel="stylesheet">
+
   <style>
     body {
-      background-color: #ffe6f0;
+      margin: 0;
+      height: 100vh;
+      background: #fdf6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 50px 60px;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(120, 0, 40, 0.15);
       text-align: center;
-      font-family: Arial, sans-serif;
-      margin-top: 120px;
+      max-width: 500px;
+      z-index: 2;
     }
+
     h1 {
-      color: #ff3366;
-      font-size: 40px;
+      font-family: 'Playfair Display', serif;
+      color: #7b0f2a;
+      font-size: 38px;
+      margin-bottom: 10px;
     }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      color: #a32044;
+      font-size: 22px;
+      margin-bottom: 30px;
+      font-weight: 500;
+    }
+
     p {
-      font-size: 20px;
-      color: #444;
+      color: #555;
+      margin-bottom: 35px;
+      font-size: 16px;
     }
+
     button {
-      font-size: 20px;
-      padding: 15px 30px;
-      margin: 20px;
+      font-size: 18px;
+      padding: 14px 32px;
+      margin: 10px;
+      border-radius: 30px;
       border: none;
-      border-radius: 10px;
       cursor: pointer;
+      transition: all 0.3s ease;
     }
+
     #yes {
-      background-color: #ff3366;
+      background: #7b0f2a;
       color: white;
     }
+
+    #yes:hover {
+      background: #5f0c21;
+    }
+
     #no {
-      background-color: #666;
-      color: white;
+      background: #d9d9d9;
+      color: #333;
       position: absolute;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      font-size: 20px;
+      color: rgba(123, 15, 42, 0.3);
+      animation: float 8s linear infinite;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(0);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(-110vh);
+        opacity: 1;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<h1>Will you be my Valentine? 💕</h1>
-<p>(Only you and me 🌸)</p>
+  <!-- Background Music -->
+  <audio autoplay loop volume="0.3">
+    <source src="https://cdn.pixabay.com/audio/2023/03/13/audio_59d8eddf59.mp3" type="audio/mpeg">
+  </audio>
 
-<button id="yes" onclick="yesClicked()">Yes 💖</button>
-<button id="no" onmouseover="moveNo()">No 🙄</button>
+  <div class="card" id="card">
+    <h1>Will you be my Valentine?</h1>
 
-<script>
-  function yesClicked() {
-    document.body.innerHTML =
-      "<h1>YAYYYY 💘😍</h1><p>I was hoping you'd say yes 💕</p>";
-  }
+    <!-- CHANGE HER NAME HERE -->
+    <h2>Only you, <span style="font-style: italic;">Tejasvi</span> ❤️</h2>
 
-  function moveNo() {
-    const noBtn = document.getElementById("no");
-    noBtn.style.left = Math.random() * 80 + "vw";
-    noBtn.style.top = Math.random() * 80 + "vh";
-  }
-</script>
+    <p>This is just me, being honest — and hoping.</p>
+
+    <button id="yes" onclick="yesClicked()">Yes 💖</button>
+    <button id="no" onmouseover="moveNo()">No 🙄</button>
+  </div>
+
+  <script>
+    function yesClicked() {
+      document.getElementById("card").innerHTML = `
+        <h1>❤️</h1>
+        <h2>You just made my day</h2>
+        <p>I can’t wait to spend Valentine’s with you.</p>
+      `;
+    }
+
+    function moveNo() {
+      const noBtn = document.getElementById("no");
+      noBtn.style.left = Math.random() * 80 + "vw";
+      noBtn.style.top = Math.random() * 80 + "vh";
+    }
+
+    // Create floating hearts
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "♥";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (14 + Math.random() * 20) + "px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 8000);
+    }, 600);
+  </script>
 
 </body>
 </html>
