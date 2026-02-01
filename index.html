@@ -3,147 +3,186 @@
 <head>
   <meta charset="UTF-8">
   <title>Just Us ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Elegant Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter&display=swap" rel="stylesheet">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       height: 100vh;
-      background: #fdf6f8;
+      background: radial-gradient(circle at top, #1b1b1f, #0b0b0d);
       display: flex;
-      justify-content: center;
       align-items: center;
-      font-family: 'Inter', sans-serif;
+      justify-content: center;
+      font-family: 'Poppins', sans-serif;
       overflow: hidden;
+      color: #e6e6eb;
     }
 
     .card {
-      background: white;
-      padding: 50px 60px;
-      border-radius: 16px;
-      box-shadow: 0 20px 40px rgba(120, 0, 40, 0.15);
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 40px 35px;
       text-align: center;
-      max-width: 500px;
+      max-width: 380px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
       z-index: 2;
+      animation: fadeIn 1.4s ease;
     }
 
     h1 {
       font-family: 'Playfair Display', serif;
-      color: #7b0f2a;
-      font-size: 38px;
+      font-size: 30px;
       margin-bottom: 10px;
+      color: #f3f3f6;
     }
 
-    h2 {
-      font-family: 'Playfair Display', serif;
-      color: #a32044;
-      font-size: 22px;
+    .name {
+      color: #b24a63;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      opacity: 0.85;
       margin-bottom: 30px;
-      font-weight: 500;
+      line-height: 1.6;
     }
 
-    p {
-      color: #555;
-      margin-bottom: 35px;
-      font-size: 16px;
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
     }
 
     button {
-      font-size: 18px;
-      padding: 14px 32px;
-      margin: 10px;
-      border-radius: 30px;
       border: none;
+      padding: 12px 26px;
+      border-radius: 25px;
+      font-size: 15px;
       cursor: pointer;
       transition: all 0.3s ease;
     }
 
-    #yes {
-      background: #7b0f2a;
+    .yes {
+      background: linear-gradient(135deg, #7b2d43, #a43a5e);
       color: white;
+      box-shadow: 0 10px 25px rgba(164,58,94,0.4);
     }
 
-    #yes:hover {
-      background: #5f0c21;
+    .yes:hover {
+      transform: translateY(-2px);
     }
 
-    #no {
-      background: #d9d9d9;
-      color: #333;
-      position: absolute;
+    .no {
+      background: rgba(255,255,255,0.08);
+      color: #cfcfd6;
     }
 
-    /* Floating hearts */
+    .no:hover {
+      opacity: 0.7;
+    }
+
+    .message {
+      display: none;
+      margin-top: 25px;
+      font-size: 16px;
+      color: #ffd6df;
+      font-family: 'Playfair Display', serif;
+      animation: fadeIn 1s ease;
+    }
+
+    /* Floating Hearts */
     .heart {
       position: absolute;
       bottom: -20px;
-      font-size: 20px;
-      color: rgba(123, 15, 42, 0.3);
-      animation: float 8s linear infinite;
+      font-size: 16px;
+      opacity: 0.35;
+      animation: floatUp linear infinite;
+      user-select: none;
+      filter: blur(0.3px);
     }
 
-    @keyframes float {
+    @keyframes floatUp {
       from {
-        transform: translateY(0);
-        opacity: 0;
+        transform: translateY(0) translateX(0);
+        opacity: 0.4;
       }
       to {
-        transform: translateY(-110vh);
-        opacity: 1;
+        transform: translateY(-110vh) translateX(30px);
+        opacity: 0;
       }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Background Music -->
-  <audio autoplay loop volume="0.3">
-    <source src="https://cdn.pixabay.com/audio/2023/03/13/audio_59d8eddf59.mp3" type="audio/mpeg">
-  </audio>
+  <div class="card">
+    <h1>Will you be my Valentine, <span class="name">[HER NAME]</span>?</h1>
+    <p class="subtitle">
+      For a day meant to be remembered,<br>
+      and quietly treasured.
+    </p>
 
-  <div class="card" id="card">
-    <h1>Will you be my Valentine?</h1>
+    <div class="buttons">
+      <button class="yes" id="yesBtn">Yes 💖</button>
+      <button class="no" id="noBtn">No 🥺</button>
+    </div>
 
-    <!-- CHANGE HER NAME HERE -->
-    <h2>Only you, <span style="font-style: italic;">Tejasvi</span> ❤️</h2>
-
-    <p>This is just me, being honest — and hoping.</p>
-
-    <button id="yes" onclick="yesClicked()">Yes 💖</button>
-    <button id="no" onmouseover="moveNo()">No 🙄</button>
+    <div class="message" id="message">
+      Then it’s just us — and this moment forever. ❤️
+    </div>
   </div>
 
+  <!-- Music -->
+  <audio id="music" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_0b3d2a4a91.mp3" type="audio/mpeg">
+  </audio>
+
   <script>
-    function yesClicked() {
-      document.getElementById("card").innerHTML = `
-        <h1>❤️</h1>
-        <h2>You just made my day</h2>
-        <p>I can’t wait to spend Valentine’s with you.</p>
-      `;
-    }
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const message = document.getElementById("message");
+    const music = document.getElementById("music");
 
-    function moveNo() {
-      const noBtn = document.getElementById("no");
-      noBtn.style.left = Math.random() * 80 + "vw";
-      noBtn.style.top = Math.random() * 80 + "vh";
-    }
+    yesBtn.addEventListener("click", () => {
+      message.style.display = "block";
+      music.play();
+    });
 
-    // Create floating hearts
+    noBtn.addEventListener("mouseover", () => {
+      noBtn.style.position = "absolute";
+      noBtn.style.left = Math.random() * 70 + "%";
+      noBtn.style.top = Math.random() * 70 + "%";
+    });
+
+    // Floating hearts generator
     setInterval(() => {
       const heart = document.createElement("div");
       heart.className = "heart";
-      heart.innerHTML = "♥";
+      heart.innerHTML = "❤";
       heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = (14 + Math.random() * 20) + "px";
+      heart.style.animationDuration = (6 + Math.random() * 6) + "s";
+      heart.style.fontSize = (12 + Math.random() * 14) + "px";
       document.body.appendChild(heart);
 
       setTimeout(() => {
         heart.remove();
-      }, 8000);
-    }, 600);
+      }, 12000);
+    }, 400);
   </script>
 
 </body>
