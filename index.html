@@ -172,7 +172,7 @@ for (let i = 0; i < heartCount; i++) {
 
   <div class="buttons">
     <button class="yes" onclick="yesClicked()">Yes ❤</button>
-    <button class="no" onmouseenter="moveNo(this)">No 🙈</button>
+    <<button class="no" onclick="moveNo(this)">No 🙈</button>
   </div>
 </div>
 
@@ -183,8 +183,14 @@ for (let i = 0; i < heartCount; i++) {
 
 <script>
 function moveNo(btn) {
-  const x = Math.random() * 160 - 80;
-  const y = Math.random() * 80 - 40;
+  const parent = btn.parentElement;
+
+  const maxX = parent.offsetWidth / 2;
+  const maxY = 120;
+
+  const x = (Math.random() - 0.5) * maxX;
+  const y = (Math.random() - 0.5) * maxY;
+
   btn.style.transform = `translate(${x}px, ${y}px)`;
 }
 
