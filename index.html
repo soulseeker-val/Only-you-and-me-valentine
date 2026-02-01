@@ -1,189 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Just Us ❤️</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Just Us ❤️</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400&display=swap');
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    body {
-      margin: 0;
-      height: 100vh;
-      background: radial-gradient(circle at top, #1b1b1f, #0b0b0d);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Poppins', sans-serif;
-      overflow: hidden;
-      color: #e6e6eb;
-    }
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: 'Inter', sans-serif;
+  background: #0b0b0b;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #eaeaea;
+}
 
-    .card {
-      background: rgba(255, 255, 255, 0.06);
-      backdrop-filter: blur(18px);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 20px;
-      padding: 40px 35px;
-      text-align: center;
-      max-width: 380px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-      z-index: 2;
-      animation: fadeIn 1.4s ease;
-    }
+/* Background image */
+.bg {
+  position: fixed;
+  inset: 0;
+  background: url('background.jpg') center/cover no-repeat;
+  filter: brightness(0.35) blur(2px);
+  z-index: -2;
+}
 
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 30px;
-      margin-bottom: 10px;
-      color: #f3f3f6;
-    }
+/* Dark overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: -1;
+}
 
-    .name {
-      color: #b24a63;
-    }
+/* Floating hearts */
+.heart {
+  position: absolute;
+  color: rgba(180, 40, 70, 0.4);
+  font-size: 14px;
+  animation: floatUp 12s linear infinite;
+}
 
-    .subtitle {
-      font-size: 14px;
-      opacity: 0.85;
-      margin-bottom: 30px;
-      line-height: 1.6;
-    }
+@keyframes floatUp {
+  from {
+    transform: translateY(100vh) scale(0.6);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(-10vh) scale(1);
+    opacity: 1;
+  }
+}
 
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 18px;
-    }
+/* Card */
+.card {
+  background: rgba(20,20,20,0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 18px;
+  padding: 40px 45px;
+  text-align: center;
+  max-width: 420px;
+  box-shadow: 0 0 40px rgba(120,0,30,0.25);
+  animation: fadeIn 1.5s ease;
+}
 
-    button {
-      border: none;
-      padding: 12px 26px;
-      border-radius: 25px;
-      font-size: 15px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-    .yes {
-      background: linear-gradient(135deg, #7b2d43, #a43a5e);
-      color: white;
-      box-shadow: 0 10px 25px rgba(164,58,94,0.4);
-    }
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 30px;
+  margin-bottom: 10px;
+  color: #f2f2f2;
+}
 
-    .yes:hover {
-      transform: translateY(-2px);
-    }
+.subtitle {
+  font-size: 14px;
+  color: #bdbdbd;
+  margin-bottom: 25px;
+}
 
-    .no {
-      background: rgba(255,255,255,0.08);
-      color: #cfcfd6;
-    }
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
 
-    .no:hover {
-      opacity: 0.7;
-    }
+button {
+  border: none;
+  padding: 12px 26px;
+  border-radius: 30px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
 
-    .message {
-      display: none;
-      margin-top: 25px;
-      font-size: 16px;
-      color: #ffd6df;
-      font-family: 'Playfair Display', serif;
-      animation: fadeIn 1s ease;
-    }
+.yes {
+  background: linear-gradient(135deg, #6d0f2b, #b21f3d);
+  color: white;
+}
 
-    /* Floating Hearts */
-    .heart {
-      position: absolute;
-      bottom: -20px;
-      font-size: 16px;
-      opacity: 0.35;
-      animation: floatUp linear infinite;
-      user-select: none;
-      filter: blur(0.3px);
-    }
+.yes:hover {
+  transform: scale(1.05);
+}
 
-    @keyframes floatUp {
-      from {
-        transform: translateY(0) translateX(0);
-        opacity: 0.4;
-      }
-      to {
-        transform: translateY(-110vh) translateX(30px);
-        opacity: 0;
-      }
-    }
+.no {
+  background: #2b2b2b;
+  color: #aaa;
+}
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+.no:hover {
+  background: #333;
+}
+
+/* After Yes */
+.result {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeIn 1.5s ease;
+}
+
+.result img {
+  max-width: 80%;
+  max-height: 70vh;
+  border-radius: 20px;
+  box-shadow: 0 0 40px rgba(120,0,30,0.4);
+}
+
+.result p {
+  margin-top: 18px;
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: #eaeaea;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="card">
-    <h1>Will you be my Valentine, <span class="name">Tejasvi</span>?</h1>
-    <p class="subtitle">
-      For a day meant to be remembered,<br>
-      and quietly treasured.
-    </p>
+<div class="bg"></div>
+<div class="overlay"></div>
 
-    <div class="buttons">
-      <button class="yes" id="yesBtn">Yes 💖</button>
-      <button class="no" id="noBtn">No 🥺</button>
-    </div>
+<!-- Hearts -->
+<script>
+for (let i = 0; i < 35; i++) {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = 8 + Math.random() * 6 + "s";
+  heart.style.fontSize = 10 + Math.random() * 14 + "px";
+  document.body.appendChild(heart);
+}
+</script>
 
-    <div class="message" id="message">
-      Then it’s just us — and this moment forever. ❤️
-    </div>
+<!-- Card -->
+<div class="card" id="card">
+  <h1>Will you be my Valentine, Tejasvi?</h1>
+  <div class="subtitle">
+    For a day to be remembered and treasured.
   </div>
 
-  <!-- Music -->
-  <audio id="music" loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_0b3d2a4a91.mp3" type="audio/mpeg">
-  </audio>
+  <div class="buttons">
+    <button class="yes" onclick="yesClicked()">Yes ❤</button>
+    <button class="no">No 🙈</button>
+  </div>
+</div>
 
-  <script>
-    const yesBtn = document.getElementById("yesBtn");
-    const noBtn = document.getElementById("noBtn");
-    const message = document.getElementById("message");
-    const music = document.getElementById("music");
+<!-- Result -->
+<div class="result" id="result">
+  <img src="us.jpg" alt="Us together">
+  <p>Always you. Always us.</p>
+</div>
 
-    yesBtn.addEventListener("click", () => {
-      message.style.display = "block";
-      music.play();
-    });
-
-    noBtn.addEventListener("mouseover", () => {
-      noBtn.style.position = "absolute";
-      noBtn.style.left = Math.random() * 70 + "%";
-      noBtn.style.top = Math.random() * 70 + "%";
-    });
-
-    // Floating hearts generator
-    setInterval(() => {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerHTML = "❤";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = (6 + Math.random() * 6) + "s";
-      heart.style.fontSize = (12 + Math.random() * 14) + "px";
-      document.body.appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, 12000);
-    }, 400);
-  </script>
+<script>
+function yesClicked() {
+  document.getElementById("card").style.display = "none";
+  document.getElementById("result").style.display = "flex";
+}
+</script>
 
 </body>
 </html>
